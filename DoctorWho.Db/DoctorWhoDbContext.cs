@@ -6,11 +6,11 @@ namespace DoctorWho.Db;
 
 public class DoctorWhoDbContext : DbContext
 {
-    public DbSet<Episode> tblEpisodes;
-    public DbSet<Author> tblAuthors;
-    public DbSet<Doctor> tblDoctors;
-    public DbSet<Enemy> tblEnemies;
-    public DbSet<Companion> tblCompanions;
+    public DbSet<Episode> tblEpisodes { get; set; }
+    public DbSet<Author> tblAuthors{ get; set; }
+    public DbSet<Doctor> tblDoctors{ get; set; }
+    public DbSet<Enemy> tblEnemies{ get; set; }
+    public DbSet<Companion> tblCompanions{ get; set; }
 
     public DoctorWhoDbContext()
     {
