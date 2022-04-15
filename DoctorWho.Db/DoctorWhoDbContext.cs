@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DoctorWho.Db;
 
@@ -10,6 +11,15 @@ public class DoctorWhoDbContext : DbContext
     public DbSet<Enemy> tblEnemies;
     public DbSet<Companion> tblCompanions;
 
+    public static readonly ILoggerFactory ConsoleLoggerFactory
+        = LoggerFactory.Create(builder =>
+        {
+            builder
+                .AddFilter((category, level) =>
+                    category == DbLoggerCategory.Database.Command.Name
+                    && level == LogLevel.Information)
+                .AddConsole();
+        });
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Author>().ToTable("tblAuthor");
