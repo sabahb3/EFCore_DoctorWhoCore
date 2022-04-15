@@ -1,4 +1,5 @@
 using DoctorWho.Db.Enumerations;
+
 namespace DoctorWho.Db;
 
 public class Episode
@@ -12,4 +13,6 @@ public class Episode
     public string Note { get; set; }
     public int AuthorId { get; set; }
     public int DoctorId { get; set; }
+
+    public Author Author { get; set; }
 }
