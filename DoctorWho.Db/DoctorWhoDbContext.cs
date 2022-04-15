@@ -162,5 +162,33 @@ public class DoctorWhoDbContext : DbContext
                 LastEpisodeDate = null
             }
         );
+        
+        modelBuilder.Entity<Author>().HasData(
+            new Author
+            {
+                AuthorId = 1,
+                AuthorName = "Aisha Marmash"
+            },
+            new Author
+            {
+                AuthorId = 2,
+                AuthorName = "Sara Sawafta"
+            },
+            new Author
+            {
+                AuthorId = 3,
+                AuthorName = "Asad Jamal"
+            },
+            new Author
+            {
+                AuthorId = 4,
+                AuthorName = "Rawan Ahmad"
+            },
+            new Author
+            {
+                AuthorId = 5,
+                AuthorName = "Qamar Ashour"
+            }
+        );
     }
 }
