@@ -4,6 +4,7 @@ using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorWho.Db.Migrations
 {
     [DbContext(typeof(DoctorWhoDbContext))]
-    partial class DoctorWhoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220415120517_SeedingEnemies")]
+    partial class SeedingEnemies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,33 +39,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasKey("AuthorId");
 
                     b.ToTable("tblAuthor", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            AuthorId = 1,
-                            AuthorName = "Aisha Marmash"
-                        },
-                        new
-                        {
-                            AuthorId = 2,
-                            AuthorName = "Sara Sawafta"
-                        },
-                        new
-                        {
-                            AuthorId = 3,
-                            AuthorName = "Asad Jamal"
-                        },
-                        new
-                        {
-                            AuthorId = 4,
-                            AuthorName = "Rawan Ahmad"
-                        },
-                        new
-                        {
-                            AuthorId = 5,
-                            AuthorName = "Qamar Ashour"
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.Companion", b =>
@@ -85,38 +60,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasKey("CompanionId");
 
                     b.ToTable("tblCompanion", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CompanionId = 1,
-                            CompanionName = "Ameera Ameer",
-                            WhoPlayed = "Ameera Surakji"
-                        },
-                        new
-                        {
-                            CompanionId = 2,
-                            CompanionName = "khalid Ali",
-                            WhoPlayed = "khalid Toma"
-                        },
-                        new
-                        {
-                            CompanionId = 3,
-                            CompanionName = "Aya Khalid",
-                            WhoPlayed = "Aya Jamal"
-                        },
-                        new
-                        {
-                            CompanionId = 4,
-                            CompanionName = "Samar Samer",
-                            WhoPlayed = "Samar Rsas"
-                        },
-                        new
-                        {
-                            CompanionId = 5,
-                            CompanionName = "Duaa Aqel",
-                            WhoPlayed = "Dalal Aqel"
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.Doctor", b =>
@@ -147,48 +90,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasKey("DoctorId");
 
                     b.ToTable("tblDoctor", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            DoctorId = 1,
-                            BirthDate = new DateTime(1985, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorName = "Anjad Shaar",
-                            DoctorNumber = "First Doctor",
-                            FirstEpisodeDate = new DateTime(2005, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastEpisodeDate = new DateTime(2008, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            DoctorId = 2,
-                            BirthDate = new DateTime(1986, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorName = "Ranen Halabi",
-                            DoctorNumber = "Second Doctor",
-                            FirstEpisodeDate = new DateTime(2002, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastEpisodeDate = new DateTime(2009, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            DoctorId = 3,
-                            BirthDate = new DateTime(1987, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorName = "Shahd Shaar",
-                            DoctorNumber = "Third Doctor",
-                            FirstEpisodeDate = new DateTime(2012, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            DoctorId = 4,
-                            BirthDate = new DateTime(1988, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorName = "Lina Khanna",
-                            DoctorNumber = "Fourth Doctor"
-                        },
-                        new
-                        {
-                            DoctorId = 5,
-                            BirthDate = new DateTime(1989, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorName = "Majd Nabulsi",
-                            DoctorNumber = "Fifth Doctor"
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.Enemy", b =>
@@ -287,63 +188,6 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblEpisode", (string)null);
 
                     b.HasCheckConstraint("CK_tblEpisode_EpisodeType_Enum", "[EpisodeType] IN (N'Trailer', N'Bonus', N'Full')");
-
-                    b.HasData(
-                        new
-                        {
-                            EpisodeId = 1,
-                            AuthorId = 1,
-                            DoctorId = 2,
-                            EpisodeDate = new DateTime(2009, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EpisodeNumber = 1,
-                            EpisodeType = "Full",
-                            SeriesNumber = 1,
-                            Title = "Welcome"
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            AuthorId = 5,
-                            DoctorId = 1,
-                            EpisodeDate = new DateTime(2009, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EpisodeNumber = 2,
-                            EpisodeType = "Trailer",
-                            SeriesNumber = 1,
-                            Title = "Test"
-                        },
-                        new
-                        {
-                            EpisodeId = 3,
-                            AuthorId = 1,
-                            DoctorId = 1,
-                            EpisodeDate = new DateTime(2005, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EpisodeNumber = 3,
-                            EpisodeType = "Bonus",
-                            SeriesNumber = 1,
-                            Title = "Be Better"
-                        },
-                        new
-                        {
-                            EpisodeId = 4,
-                            AuthorId = 5,
-                            DoctorId = 3,
-                            EpisodeDate = new DateTime(2006, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EpisodeNumber = 1,
-                            EpisodeType = "Full",
-                            SeriesNumber = 2,
-                            Title = "Warnning"
-                        },
-                        new
-                        {
-                            EpisodeId = 5,
-                            AuthorId = 2,
-                            DoctorId = 3,
-                            EpisodeDate = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EpisodeNumber = 2,
-                            EpisodeType = "Bonus",
-                            SeriesNumber = 2,
-                            Title = "Warnning"
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.EpisodeCompanion", b =>
@@ -362,38 +206,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasIndex("CompanionId");
 
                     b.ToTable("tblEpisodeCompanion", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            EpisodeId = 1,
-                            CompanionId = 1,
-                            EpisodeCompanionId = 1
-                        },
-                        new
-                        {
-                            EpisodeId = 1,
-                            CompanionId = 3,
-                            EpisodeCompanionId = 2
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            CompanionId = 4,
-                            EpisodeCompanionId = 3
-                        },
-                        new
-                        {
-                            EpisodeId = 3,
-                            CompanionId = 1,
-                            EpisodeCompanionId = 4
-                        },
-                        new
-                        {
-                            EpisodeId = 4,
-                            CompanionId = 4,
-                            EpisodeCompanionId = 5
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.EpisodeEnemy", b =>
@@ -412,38 +224,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasIndex("EnemyId");
 
                     b.ToTable("tblEpisodeEnemy", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            EpisodeId = 1,
-                            EnemyId = 4,
-                            EpisodeEnemyId = 1
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            EnemyId = 4,
-                            EpisodeEnemyId = 2
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            EnemyId = 1,
-                            EpisodeEnemyId = 3
-                        },
-                        new
-                        {
-                            EpisodeId = 3,
-                            EnemyId = 1,
-                            EpisodeEnemyId = 4
-                        },
-                        new
-                        {
-                            EpisodeId = 4,
-                            EnemyId = 3,
-                            EpisodeEnemyId = 5
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.Episode", b =>

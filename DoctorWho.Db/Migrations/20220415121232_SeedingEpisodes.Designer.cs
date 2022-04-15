@@ -4,6 +4,7 @@ using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorWho.Db.Migrations
 {
     [DbContext(typeof(DoctorWhoDbContext))]
-    partial class DoctorWhoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220415121232_SeedingEpisodes")]
+    partial class SeedingEpisodes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -362,38 +364,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasIndex("CompanionId");
 
                     b.ToTable("tblEpisodeCompanion", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            EpisodeId = 1,
-                            CompanionId = 1,
-                            EpisodeCompanionId = 1
-                        },
-                        new
-                        {
-                            EpisodeId = 1,
-                            CompanionId = 3,
-                            EpisodeCompanionId = 2
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            CompanionId = 4,
-                            EpisodeCompanionId = 3
-                        },
-                        new
-                        {
-                            EpisodeId = 3,
-                            CompanionId = 1,
-                            EpisodeCompanionId = 4
-                        },
-                        new
-                        {
-                            EpisodeId = 4,
-                            CompanionId = 4,
-                            EpisodeCompanionId = 5
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.EpisodeEnemy", b =>
@@ -412,38 +382,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasIndex("EnemyId");
 
                     b.ToTable("tblEpisodeEnemy", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            EpisodeId = 1,
-                            EnemyId = 4,
-                            EpisodeEnemyId = 1
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            EnemyId = 4,
-                            EpisodeEnemyId = 2
-                        },
-                        new
-                        {
-                            EpisodeId = 2,
-                            EnemyId = 1,
-                            EpisodeEnemyId = 3
-                        },
-                        new
-                        {
-                            EpisodeId = 3,
-                            EnemyId = 1,
-                            EpisodeEnemyId = 4
-                        },
-                        new
-                        {
-                            EpisodeId = 4,
-                            EnemyId = 3,
-                            EpisodeEnemyId = 5
-                        });
                 });
 
             modelBuilder.Entity("DoctorWho.Db.Episode", b =>
