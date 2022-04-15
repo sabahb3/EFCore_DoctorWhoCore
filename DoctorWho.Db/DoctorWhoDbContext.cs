@@ -20,6 +20,15 @@ public class DoctorWhoDbContext : DbContext
                     && level == LogLevel.Information)
                 .AddConsole();
         });
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
+            .UseSqlServer(
+                "Server=localhost;" +
+                "Database=DoctorWhoCore;" +
+                "Persist Security Info=False;User ID=sa;Password=S.11714778" )
+            .UseEnumCheckConstraints();
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Author>().ToTable("tblAuthor");
