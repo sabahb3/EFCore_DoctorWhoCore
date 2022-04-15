@@ -282,5 +282,38 @@ public class DoctorWhoDbContext : DbContext
                 EnemyId = 3
             }
         );
+        
+        modelBuilder.Entity<EpisodeCompanion>().HasData(
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 1,
+                EpisodeId = 1,
+                CompanionId = 1
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 2,
+                EpisodeId = 1,
+                CompanionId = 3
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 3,
+                EpisodeId = 2,
+                CompanionId = 4
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 4,
+                EpisodeId = 3,
+                CompanionId = 1
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 5,
+                EpisodeId = 4,
+                CompanionId = 4
+            }
+        );
     }
 }
