@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using DoctorWho.Db.Enumerations;
@@ -330,5 +331,21 @@ public class DoctorWhoDbContext : DbContext
                 CompanionId = 4
             }
         );
+    }
+
+    [DbFunction]
+    public static string fnCompanions(int EpisodeId)
+    {
+        var context = new DoctorWhoDbContext();
+        var companion =context.Set<EpisodeCompanion>().Where(ec => ec.EpisodeId == EpisodeId).Select(ec => ec.Companion.CompanionName);
+        return String.Join(',',companion);
+    }
+    
+    [DbFunction]
+    public static string fnEnemies(int EpisodeId)
+    {
+        var context = new DoctorWhoDbContext();
+        var companion =context.Set<EpisodeEnemy>().Where(ec => ec.EpisodeId == EpisodeId).Select(ec => ec.Enemy.EnemyName);
+        return String.Join(',',companion);
     }
 }
