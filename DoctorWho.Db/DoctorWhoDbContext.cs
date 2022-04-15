@@ -114,5 +114,53 @@ public class DoctorWhoDbContext : DbContext
                 WhoPlayed = "Dalal Aqel"
             }
         );
+        
+        modelBuilder.Entity<Doctor>().HasData(
+            new Doctor
+            {
+                DoctorId = 1,
+                DoctorNumber = "First Doctor",
+                DoctorName = "Anjad Shaar",
+                BirthDate = new DateTime(1985,7,10),
+                FirstEpisodeDate = new DateTime(2005,8,3),
+                LastEpisodeDate = new DateTime(2008,12,26)
+            },
+            new Doctor
+            {
+                DoctorId = 2,
+                DoctorNumber = "Second Doctor",
+                DoctorName = "Ranen Halabi",
+                BirthDate = new DateTime(1986,7,10),
+                FirstEpisodeDate = new DateTime(2002,8,3),
+                LastEpisodeDate = new DateTime(2009,12,26)
+            },
+            new Doctor
+            {
+                DoctorId = 3,
+                DoctorNumber = "Third Doctor",
+                DoctorName = "Shahd Shaar",
+                BirthDate = new DateTime(1987,7,10),
+                FirstEpisodeDate = new DateTime(2012,8,3),
+                LastEpisodeDate = null
+            },
+            new Doctor
+            {
+                DoctorId = 4,
+                DoctorNumber = "Fourth Doctor",
+                DoctorName = "Lina Khanna",
+                BirthDate = new DateTime(1988,10,15),
+                FirstEpisodeDate = null,
+                LastEpisodeDate = null
+            },
+            new Doctor
+            {
+                DoctorId = 5,
+                DoctorNumber = "Fifth Doctor",
+                DoctorName = "Majd Nabulsi",
+                BirthDate = new DateTime(1989,12,25),
+                FirstEpisodeDate = null,
+                LastEpisodeDate = null
+            }
+        );
     }
 }
