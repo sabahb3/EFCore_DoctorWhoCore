@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWho", "DoctorWho\Doct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWho.Db", "DoctorWho.Db\DoctorWho.Db.csproj", "{D760DD1C-F5F3-44CA-9CDD-BC4898892916}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{157600C2-80F7-4A44-B8BE-D12642D908AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D760DD1C-F5F3-44CA-9CDD-BC4898892916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D760DD1C-F5F3-44CA-9CDD-BC4898892916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D760DD1C-F5F3-44CA-9CDD-BC4898892916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157600C2-80F7-4A44-B8BE-D12642D908AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157600C2-80F7-4A44-B8BE-D12642D908AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157600C2-80F7-4A44-B8BE-D12642D908AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157600C2-80F7-4A44-B8BE-D12642D908AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
