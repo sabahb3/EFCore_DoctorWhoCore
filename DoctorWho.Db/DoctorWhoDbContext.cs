@@ -38,5 +38,9 @@ public class DoctorWhoDbContext : DbContext
         modelBuilder.Entity<Episode>().ToTable("tblEpisode");
         modelBuilder.Entity<EpisodeCompanion>().ToTable("tblEpisodeCompanion");
         modelBuilder.Entity<EpisodeEnemy>().ToTable("tblEpisodeEnemy");
+        
+        modelBuilder.Entity<EpisodeCompanion>().HasKey(e => new {e.EpisodeId, e.CompanionId});
+        modelBuilder.Entity<EpisodeEnemy>().HasKey(e => new {e.EpisodeId, e.EnemyId});
+        modelBuilder.Entity<Episode>().Property(e => e.EpisodeType).HasConversion<string>();
     }
 }
