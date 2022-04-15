@@ -12,6 +12,14 @@ public class DoctorWhoDbContext : DbContext
     public DbSet<Enemy> tblEnemies;
     public DbSet<Companion> tblCompanions;
 
+    public DoctorWhoDbContext()
+    {
+    }
+
+    public DoctorWhoDbContext(DbContextOptions options) : base(options)
+    {
+    }
+
     public static readonly ILoggerFactory ConsoleLoggerFactory
         = LoggerFactory.Create(builder =>
         {
@@ -21,15 +29,18 @@ public class DoctorWhoDbContext : DbContext
                     && level == LogLevel.Information)
                 .AddConsole();
         });
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
-            .UseSqlServer(
-                "Server=localhost;" +
-                "Database=DoctorWhoCore;" +
-                "Persist Security Info=False;User ID=sa;Password=S.11714778" )
-            .UseEnumCheckConstraints();
+        if (!optionsBuilder.IsConfigured)
+            optionsBuilder.UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
+                .UseSqlServer(
+                    "Server=localhost;" +
+                    "Database=DoctorWhoCore;" +
+                    "Persist Security Info=False;User ID=sa;Password=S.11714778")
+                .UseEnumCheckConstraints();
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Author>().ToTable("tblAuthor");
@@ -39,41 +50,45 @@ public class DoctorWhoDbContext : DbContext
         modelBuilder.Entity<Episode>().ToTable("tblEpisode");
         modelBuilder.Entity<EpisodeCompanion>().ToTable("tblEpisodeCompanion");
         modelBuilder.Entity<EpisodeEnemy>().ToTable("tblEpisodeEnemy");
-        
+
         modelBuilder.Entity<EpisodeCompanion>().HasKey(e => new {e.EpisodeId, e.CompanionId});
         modelBuilder.Entity<EpisodeEnemy>().HasKey(e => new {e.EpisodeId, e.EnemyId});
         modelBuilder.Entity<Episode>().Property(e => e.EpisodeType).HasConversion<string>();
-        
+
         modelBuilder.Entity<Enemy>().HasData(
             new Enemy
             {
                 EnemyId = 1,
                 EnemyName = "Tuberculosis",
-                Description = "Tuberculosis (TB) is caused by bacteria (Mycobacterium tuberculosis) that most often affect" +
-                              " the lungs. Tuberculosis is curable and preventable."
+                Description =
+                    "Tuberculosis (TB) is caused by bacteria (Mycobacterium tuberculosis) that most often affect" +
+                    " the lungs. Tuberculosis is curable and preventable."
             },
             new Enemy
             {
                 EnemyId = 2,
                 EnemyName = "Plague",
-                Description = "Plague is an infectious disease caused by the bacteria Yersinia pestis, a zoonotic bacteria, usually " +
-                              "found in small mammals and their fleas. It is transmitted between animals through fleas."
+                Description =
+                    "Plague is an infectious disease caused by the bacteria Yersinia pestis, a zoonotic bacteria, usually " +
+                    "found in small mammals and their fleas. It is transmitted between animals through fleas."
             },
             new Enemy
             {
                 EnemyId = 3,
                 EnemyName = "Smallpox",
-                Description = "Smallpox is an ancient disease caused by the variola virus. Early symptoms include high fever and fatigue." +
-                              " The virus then produces a characteristic rash, particularly on the face, arms and legs. The resulting spots " +
-                              "become filled with clear fluid and later, pus, and then form a crust, which eventually dries up and falls off." +
-                              " Smallpox was fatal in up to 30% of cases"
+                Description =
+                    "Smallpox is an ancient disease caused by the variola virus. Early symptoms include high fever and fatigue." +
+                    " The virus then produces a characteristic rash, particularly on the face, arms and legs. The resulting spots " +
+                    "become filled with clear fluid and later, pus, and then form a crust, which eventually dries up and falls off." +
+                    " Smallpox was fatal in up to 30% of cases"
             },
             new Enemy
             {
                 EnemyId = 4,
                 EnemyName = "Poliomyelitis",
-                Description = "A viral infection causing nerve injury which leads to partial or full paralysis. Many of the infected people" +
-                              " do not show any symptoms."
+                Description =
+                    "A viral infection causing nerve injury which leads to partial or full paralysis. Many of the infected people" +
+                    " do not show any symptoms."
             },
             new Enemy
             {
@@ -82,7 +97,7 @@ public class DoctorWhoDbContext : DbContext
                 Description = "A bacterial infection which spreads through contaminated food and water."
             }
         );
-        
+
         modelBuilder.Entity<Companion>().HasData(
             new Companion
             {
@@ -115,33 +130,33 @@ public class DoctorWhoDbContext : DbContext
                 WhoPlayed = "Dalal Aqel"
             }
         );
-        
+
         modelBuilder.Entity<Doctor>().HasData(
             new Doctor
             {
                 DoctorId = 1,
                 DoctorNumber = "First Doctor",
                 DoctorName = "Anjad Shaar",
-                BirthDate = new DateTime(1985,7,10),
-                FirstEpisodeDate = new DateTime(2005,8,3),
-                LastEpisodeDate = new DateTime(2008,12,26)
+                BirthDate = new DateTime(1985, 7, 10),
+                FirstEpisodeDate = new DateTime(2005, 8, 3),
+                LastEpisodeDate = new DateTime(2008, 12, 26)
             },
             new Doctor
             {
                 DoctorId = 2,
                 DoctorNumber = "Second Doctor",
                 DoctorName = "Ranen Halabi",
-                BirthDate = new DateTime(1986,7,10),
-                FirstEpisodeDate = new DateTime(2002,8,3),
-                LastEpisodeDate = new DateTime(2009,12,26)
+                BirthDate = new DateTime(1986, 7, 10),
+                FirstEpisodeDate = new DateTime(2002, 8, 3),
+                LastEpisodeDate = new DateTime(2009, 12, 26)
             },
             new Doctor
             {
                 DoctorId = 3,
                 DoctorNumber = "Third Doctor",
                 DoctorName = "Shahd Shaar",
-                BirthDate = new DateTime(1987,7,10),
-                FirstEpisodeDate = new DateTime(2012,8,3),
+                BirthDate = new DateTime(1987, 7, 10),
+                FirstEpisodeDate = new DateTime(2012, 8, 3),
                 LastEpisodeDate = null
             },
             new Doctor
@@ -149,7 +164,7 @@ public class DoctorWhoDbContext : DbContext
                 DoctorId = 4,
                 DoctorNumber = "Fourth Doctor",
                 DoctorName = "Lina Khanna",
-                BirthDate = new DateTime(1988,10,15),
+                BirthDate = new DateTime(1988, 10, 15),
                 FirstEpisodeDate = null,
                 LastEpisodeDate = null
             },
@@ -158,12 +173,12 @@ public class DoctorWhoDbContext : DbContext
                 DoctorId = 5,
                 DoctorNumber = "Fifth Doctor",
                 DoctorName = "Majd Nabulsi",
-                BirthDate = new DateTime(1989,12,25),
+                BirthDate = new DateTime(1989, 12, 25),
                 FirstEpisodeDate = null,
                 LastEpisodeDate = null
             }
         );
-        
+
         modelBuilder.Entity<Author>().HasData(
             new Author
             {
@@ -191,65 +206,65 @@ public class DoctorWhoDbContext : DbContext
                 AuthorName = "Qamar Ashour"
             }
         );
-        
+
         modelBuilder.Entity<Episode>().HasData(
             new Episode
             {
-                EpisodeId =1, 
+                EpisodeId = 1,
                 SeriesNumber = 1,
                 EpisodeNumber = 1,
                 EpisodeType = EpisodeType.Full,
                 Title = "Welcome",
-                EpisodeDate = new DateTime(2009,5,21),
+                EpisodeDate = new DateTime(2009, 5, 21),
                 DoctorId = 2,
                 AuthorId = 1
             },
             new Episode
             {
-                EpisodeId =2, 
+                EpisodeId = 2,
                 SeriesNumber = 1,
                 EpisodeNumber = 2,
                 EpisodeType = EpisodeType.Trailer,
                 Title = "Test",
-                EpisodeDate = new DateTime(2009,5,28),
+                EpisodeDate = new DateTime(2009, 5, 28),
                 DoctorId = 1,
                 AuthorId = 5
             },
             new Episode
             {
-                EpisodeId =3, 
+                EpisodeId = 3,
                 SeriesNumber = 1,
                 EpisodeNumber = 3,
                 EpisodeType = EpisodeType.Bonus,
                 Title = "Be Better",
-                EpisodeDate = new DateTime(2005,6,20),
+                EpisodeDate = new DateTime(2005, 6, 20),
                 DoctorId = 1,
                 AuthorId = 1
             },
             new Episode
             {
-                EpisodeId =4, 
+                EpisodeId = 4,
                 SeriesNumber = 2,
                 EpisodeNumber = 1,
                 EpisodeType = EpisodeType.Full,
                 Title = "Warnning",
-                EpisodeDate = new DateTime(2006,6,22),
+                EpisodeDate = new DateTime(2006, 6, 22),
                 DoctorId = 3,
                 AuthorId = 5
             },
             new Episode
             {
-                EpisodeId =5, 
+                EpisodeId = 5,
                 SeriesNumber = 2,
                 EpisodeNumber = 2,
                 EpisodeType = EpisodeType.Bonus,
                 Title = "Warnning",
-                EpisodeDate = new DateTime(2022,4,22),
+                EpisodeDate = new DateTime(2022, 4, 22),
                 DoctorId = 3,
                 AuthorId = 2
             }
         );
-        
+
         modelBuilder.Entity<EpisodeEnemy>().HasData(
             new EpisodeEnemy
             {
@@ -282,7 +297,7 @@ public class DoctorWhoDbContext : DbContext
                 EnemyId = 3
             }
         );
-        
+
         modelBuilder.Entity<EpisodeCompanion>().HasData(
             new EpisodeCompanion
             {
