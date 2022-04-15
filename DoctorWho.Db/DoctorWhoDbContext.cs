@@ -81,5 +81,38 @@ public class DoctorWhoDbContext : DbContext
                 Description = "A bacterial infection which spreads through contaminated food and water."
             }
         );
+        
+        modelBuilder.Entity<Companion>().HasData(
+            new Companion
+            {
+                CompanionId = 1,
+                CompanionName = "Ameera Ameer",
+                WhoPlayed = "Ameera Surakji"
+            },
+            new Companion
+            {
+                CompanionId = 2,
+                CompanionName = "khalid Ali",
+                WhoPlayed = "khalid Toma"
+            },
+            new Companion
+            {
+                CompanionId = 3,
+                CompanionName = "Aya Khalid",
+                WhoPlayed = "Aya Jamal"
+            },
+            new Companion
+            {
+                CompanionId = 4,
+                CompanionName = "Samar Samer",
+                WhoPlayed = "Samar Rsas"
+            },
+            new Companion
+            {
+                CompanionId = 5,
+                CompanionName = "Duaa Aqel",
+                WhoPlayed = "Dalal Aqel"
+            }
+        );
     }
 }
