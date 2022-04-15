@@ -8,10 +8,11 @@ namespace DoctorWho.Db;
 public class DoctorWhoDbContext : DbContext
 {
     public DbSet<Episode> tblEpisodes { get; set; }
-    public DbSet<Author> tblAuthors{ get; set; }
-    public DbSet<Doctor> tblDoctors{ get; set; }
-    public DbSet<Enemy> tblEnemies{ get; set; }
-    public DbSet<Companion> tblCompanions{ get; set; }
+    public DbSet<Author> tblAuthors { get; set; }
+    public DbSet<Doctor> tblDoctors { get; set; }
+    public DbSet<Enemy> tblEnemies { get; set; }
+    public DbSet<Companion> tblCompanions { get; set; }
+    public DbSet<ViewEpisodes> ViewEpisodes { get; set; }
 
     public DoctorWhoDbContext()
     {
@@ -55,6 +56,8 @@ public class DoctorWhoDbContext : DbContext
         modelBuilder.Entity<EpisodeCompanion>().HasKey(e => new {e.EpisodeId, e.CompanionId});
         modelBuilder.Entity<EpisodeEnemy>().HasKey(e => new {e.EpisodeId, e.EnemyId});
         modelBuilder.Entity<Episode>().Property(e => e.EpisodeType).HasConversion<string>();
+
+        modelBuilder.Entity<ViewEpisodes>().HasNoKey().ToView("viewEpisodes");
 
         modelBuilder.Entity<Enemy>().HasData(
             new Enemy
@@ -337,15 +340,17 @@ public class DoctorWhoDbContext : DbContext
     public static string fnCompanions(int EpisodeId)
     {
         var context = new DoctorWhoDbContext();
-        var companion =context.Set<EpisodeCompanion>().Where(ec => ec.EpisodeId == EpisodeId).Select(ec => ec.Companion.CompanionName);
-        return String.Join(',',companion);
+        var companion = context.Set<EpisodeCompanion>().Where(ec => ec.EpisodeId == EpisodeId)
+            .Select(ec => ec.Companion.CompanionName);
+        return string.Join(',', companion);
     }
-    
+
     [DbFunction]
     public static string fnEnemies(int EpisodeId)
     {
         var context = new DoctorWhoDbContext();
-        var companion =context.Set<EpisodeEnemy>().Where(ec => ec.EpisodeId == EpisodeId).Select(ec => ec.Enemy.EnemyName);
-        return String.Join(',',companion);
+        var companion = context.Set<EpisodeEnemy>().Where(ec => ec.EpisodeId == EpisodeId)
+            .Select(ec => ec.Enemy.EnemyName);
+        return string.Join(',', companion);
     }
 }
