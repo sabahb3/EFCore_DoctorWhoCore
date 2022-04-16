@@ -40,7 +40,8 @@ public class DoctorWhoDbContext : DbContext
                     "Server=localhost;" +
                     "Database=DoctorWhoCore;" +
                     "Persist Security Info=False;User ID=sa;Password=S.11714778")
-                .UseEnumCheckConstraints();
+                .UseEnumCheckConstraints()
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
