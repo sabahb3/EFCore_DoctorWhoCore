@@ -16,7 +16,8 @@ internal class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
-        GetAllDoctor();
+        var enemy = GetEnemyById(1);
+        
     }
 
     public static void ExecuteView()
@@ -88,5 +89,10 @@ internal class Program
     public static void GetAllDoctor()
     {
         var doctors = _context.tblDoctors.ToList();
+    }
+
+    public static Enemy? GetEnemyById(int enemyId)
+    {
+        return _context.tblEnemies.Find(enemyId);
     }
 }
