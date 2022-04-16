@@ -166,4 +166,15 @@ public class DoctorCUD
                 updateContext.SaveChanges();
             }
     }
+
+    public static void DeleteDoctor(int doctorId)
+    {
+        var doctor = _context.tblDoctors.Find(doctorId);
+        if (doctor != null)
+            using (var deleteContext = new DoctorWhoDbContext())
+            {
+                deleteContext.tblDoctors.Remove(doctor);
+                deleteContext.SaveChanges();
+            }
+    }
 }

@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using DoctorWho.Db;
-using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
