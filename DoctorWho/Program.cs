@@ -19,7 +19,8 @@ class Program
         // UpdateAuthor(7, "UpdatedName");
         // DeleteAuthor(7);
 
-        CreateCompanion("CompanionTest", "playedTest");
+        // CreateCompanion("CompanionTest", "playedTest");
+        UpdateCompanionName(6, "Test1");
     }
 
     public static void ExecuteView()
@@ -86,4 +87,18 @@ class Program
         _context.tblCompanions.Add(companion);
         _context.SaveChanges();
     }
+    public static void UpdateCompanionName(int companionId, string companionName)
+    {
+        var companion = _context.tblCompanions.Find(companionId);
+        if (companion != null)
+        {
+            using (var updateContext = new DoctorWhoDbContext())
+            {
+                companion.CompanionName = companionName;
+                updateContext.Entry(companion).State = EntityState.Modified;
+                updateContext.SaveChanges();
+            }
+        }
+    }
+
 }
