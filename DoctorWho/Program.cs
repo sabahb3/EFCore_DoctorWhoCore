@@ -1,11 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using DoctorWho.Db;
-using Microsoft.EntityFrameworkCore;
 
-class Program
+internal class Program
 {
-    private static DoctorWhoDbContext _context = new DoctorWhoDbContext();
+    private static DoctorWhoDbContext _context = new();
+
     public static void Main()
     {
         ExecuteView();
