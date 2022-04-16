@@ -15,7 +15,8 @@ class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
-        CreateAuthor("New Author");
+        // CreateAuthor("New Author");
+        UpdateAuthor(7, "UpdatedName");
     }
 
     public static void ExecuteView()
@@ -43,5 +44,19 @@ class Program
         };
         _context.tblAuthors.Add(author);
         _context.SaveChanges();
+    }
+
+    public static void UpdateAuthor(int authorId, string authorName)
+    {
+        var author = _context.tblAuthors.Find(authorId);
+        if (author != null)
+        {
+            using (var updateContext = new DoctorWhoDbContext())
+            {
+                author.AuthorName = authorName;
+                updateContext.Entry(author).State = EntityState.Modified;
+                updateContext.SaveChanges();
+            }
+        }
     }
 }
