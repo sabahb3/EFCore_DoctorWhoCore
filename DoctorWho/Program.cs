@@ -15,6 +15,7 @@ class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
+        CreateAuthor("New Author");
     }
 
     public static void ExecuteView()
@@ -32,5 +33,15 @@ class Program
     {
         var result = DoctorWhoDbContext.fnEnemies(episodeId);
         return result;
+    }
+
+    public static void CreateAuthor(string authorName)
+    {
+        var author = new Author
+        {
+            AuthorName = authorName
+        };
+        _context.tblAuthors.Add(author);
+        _context.SaveChanges();
     }
 }
