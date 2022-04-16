@@ -22,7 +22,8 @@ class Program
         // CreateCompanion("CompanionTest", "playedTest");
         // UpdateCompanionName(6, "Test1");
         // UpdateCompanionWhoPlayed(6, "whoPlayedTest");
-        UpdateCompanion(6, "testTest", "whoPlayedTest");
+        // UpdateCompanion(6, "testTest", "whoPlayedTest");
+        DeleteCompanion(6);
     }
 
     public static void ExecuteView()
@@ -129,5 +130,18 @@ class Program
             }
         }
     }
+    public static void DeleteCompanion(int companionId)
+    {
+        var companion = _context.tblCompanions.Find(companionId);
+        if (companion!=null)
+        {
+            using (var deleteContext= new DoctorWhoDbContext())
+            {
+                deleteContext.tblCompanions.Remove(companion);
+                deleteContext.SaveChanges();
+            }   
+        }
+    }
+
 
 }
