@@ -21,7 +21,8 @@ class Program
 
         // CreateCompanion("CompanionTest", "playedTest");
         // UpdateCompanionName(6, "Test1");
-        UpdateCompanionWhoPlayed(6, "whoPlayedTest");
+        // UpdateCompanionWhoPlayed(6, "whoPlayedTest");
+        UpdateCompanion(6, "testTest", "whoPlayedTest");
     }
 
     public static void ExecuteView()
@@ -108,6 +109,20 @@ class Program
         {
             using (var updateContext = new DoctorWhoDbContext())
             {
+                companion.WhoPlayed = whoPlayed;
+                updateContext.Entry(companion).State = EntityState.Modified;
+                updateContext.SaveChanges();
+            }
+        }
+    }
+    public static void UpdateCompanion(int companionId,string companionName, string whoPlayed)
+    {
+        var companion = _context.tblCompanions.Find(companionId);
+        if (companion != null)
+        {
+            using (var updateContext = new DoctorWhoDbContext())
+            {
+                companion.CompanionName = companionName;
                 companion.WhoPlayed = whoPlayed;
                 updateContext.Entry(companion).State = EntityState.Modified;
                 updateContext.SaveChanges();
