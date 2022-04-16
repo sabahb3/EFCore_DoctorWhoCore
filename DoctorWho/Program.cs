@@ -26,9 +26,10 @@ class Program
         // DeleteCompanion(6);
         
         // CreateEnemy("TestName","TestDescription");
-        UpdateEnemyName(6,"TestName1");
-        UpdateEnemyDescription(6,"TestDescription1");
-        UpdateEnemy(6,"TestName2","TestDescription2");
+        // UpdateEnemyName(6,"TestName1");
+        // UpdateEnemyDescription(6,"TestDescription1");
+        // UpdateEnemy(6,"TestName2","TestDescription2");
+        DeleteEnemy(6);
     }
 
     public static void ExecuteView()
@@ -195,6 +196,18 @@ class Program
                 updateContext.Entry(enemy).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
+        }
+    }
+    public static void DeleteEnemy(int enemyId)
+    {
+        var enemy = _context.tblEnemies.Find(enemyId);
+        if (enemy!=null)
+        {
+            using (var deleteContext= new DoctorWhoDbContext())
+            {
+                deleteContext.tblEnemies.Remove(enemy);
+                deleteContext.SaveChanges();
+            }   
         }
     }
 }
