@@ -24,7 +24,11 @@ class Program
         // UpdateCompanionWhoPlayed(6, "whoPlayedTest");
         // UpdateCompanion(6, "testTest", "whoPlayedTest");
         // DeleteCompanion(6);
-        CreateEnemy("TestName","TestDescription");
+        
+        // CreateEnemy("TestName","TestDescription");
+        UpdateEnemyName(6,"TestName1");
+        UpdateEnemyDescription(6,"TestDescription1");
+        UpdateEnemy(6,"TestName2","TestDescription2");
     }
 
     public static void ExecuteView()
@@ -152,5 +156,45 @@ class Program
         };
         _context.tblEnemies.Add(enemy);
         _context.SaveChanges();
+    }
+    public static void UpdateEnemyName(int enemyId, string enemyName)
+    {
+        var enemy = _context.tblEnemies.Find(enemyId);
+        if (enemy != null)
+        {
+            using (var updateContext = new DoctorWhoDbContext())
+            {
+                enemy.EnemyName = enemyName;
+                updateContext.Entry(enemy).State = EntityState.Modified;
+                updateContext.SaveChanges();
+            }
+        }
+    }
+    public static void UpdateEnemyDescription(int enemyId, string description)
+    {
+        var enemy = _context.tblEnemies.Find(enemyId);
+        if (enemy != null)
+        {
+            using (var updateContext = new DoctorWhoDbContext())
+            {
+                enemy.Description = description;
+                updateContext.Entry(enemy).State = EntityState.Modified;
+                updateContext.SaveChanges();
+            }
+        }
+    }
+    public static void UpdateEnemy(int enemyId,string enemyName, string description)
+    {
+        var enemy = _context.tblEnemies.Find(enemyId);
+        if (enemy != null)
+        {
+            using (var updateContext = new DoctorWhoDbContext())
+            {
+                enemy.EnemyName = enemyName;
+                enemy.Description = description;
+                updateContext.Entry(enemy).State = EntityState.Modified;
+                updateContext.SaveChanges();
+            }
+        }
     }
 }
