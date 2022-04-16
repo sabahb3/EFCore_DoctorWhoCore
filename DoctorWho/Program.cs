@@ -23,7 +23,8 @@ class Program
         // UpdateCompanionName(6, "Test1");
         // UpdateCompanionWhoPlayed(6, "whoPlayedTest");
         // UpdateCompanion(6, "testTest", "whoPlayedTest");
-        DeleteCompanion(6);
+        // DeleteCompanion(6);
+        CreateEnemy("TestName","TestDescription");
     }
 
     public static void ExecuteView()
@@ -142,6 +143,14 @@ class Program
             }   
         }
     }
-
-
+    public static void CreateEnemy(string enemyName, string description)
+    {
+        var enemy = new Enemy
+        {
+           EnemyName = enemyName,
+           Description = description,
+        };
+        _context.tblEnemies.Add(enemy);
+        _context.SaveChanges();
+    }
 }
