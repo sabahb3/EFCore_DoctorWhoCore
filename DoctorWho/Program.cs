@@ -15,6 +15,7 @@ internal class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
+        AddEnemyToEpisode(1, "TestTest", "SabahTest");
     }
 
     public static void ExecuteView()
@@ -32,5 +33,30 @@ internal class Program
     {
         var result = DoctorWhoDbContext.fnEnemies(episodeId);
         return result;
+    }
+
+    public static void AddEnemyToEpisode(int episodeId,string enemyName, string description)
+    {
+        var episode = _context.tblEpisodes.Find(episodeId);
+        if (episode != null)
+        {
+            var enemy = new Enemy
+            {
+                EnemyName = enemyName,
+                Description = description
+            };
+            using (var addEnemy = new DoctorWhoDbContext())
+            {
+                addEnemy.Attach(episode);
+                episode.EpisodesEnemies.Add
+                (
+                    new EpisodeEnemy
+                    {
+                        Enemy = enemy
+                    }
+                );
+                addEnemy.SaveChanges();
+            }
+        }
     }
 }
