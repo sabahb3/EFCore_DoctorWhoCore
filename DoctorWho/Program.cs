@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using DoctorWho.Db;
+using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
@@ -15,7 +16,7 @@ internal class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
-        AddCompanionToEpisode(1,"CompanionTest","whoPlayedTest");
+        GetAllDoctor();
     }
 
     public static void ExecuteView()
@@ -82,5 +83,10 @@ internal class Program
                 addCompanion.SaveChanges();
             }
         }
+    }
+
+    public static void GetAllDoctor()
+    {
+        var doctors = _context.tblDoctors.ToList();
     }
 }
