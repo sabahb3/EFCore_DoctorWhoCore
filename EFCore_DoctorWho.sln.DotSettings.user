@@ -4,5 +4,8 @@
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.SeedingData&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.UserDefinedTypes.ShouldReturnAllCompanionsOfEpisode&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.UserDefinedTypes&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.CreateUpdateDelete.ShouldAddUpdateAuthor&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.CreateUpdateDelete.ShouldAddNewAuthor&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.CreateUpdateDelete.ShouldDeleteAuthor&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
