@@ -59,6 +59,8 @@ public class DoctorWhoDbContext : DbContext
         modelBuilder.Entity<Episode>().Property(e => e.EpisodeType).HasConversion<string>();
 
         modelBuilder.Entity<ViewEpisodes>().HasNoKey().ToView("viewEpisodes");
+        modelBuilder.Entity<EpisodeEnemy>().Property(e => e.EpisodeEnemyId).UseIdentityColumn();
+        modelBuilder.Entity<EpisodeCompanion>().Property(e => e.EpisodeCompanionId).UseIdentityColumn();
 
         modelBuilder.Entity<Enemy>().HasData(
             new Enemy
@@ -269,8 +271,71 @@ public class DoctorWhoDbContext : DbContext
                 AuthorId = 2
             }
         );
+        modelBuilder.Entity<EpisodeEnemy>().HasData(
+            new EpisodeEnemy
+            {
+                EpisodeEnemyId = 1,
+                EpisodeId = 1,
+                EnemyId = 4
+            },
+            new EpisodeEnemy
+            {
+                EpisodeEnemyId = 2,
+                EpisodeId = 2,
+                EnemyId = 4
+            },
+            new EpisodeEnemy
+            {
+                EpisodeEnemyId = 3,
+                EpisodeId = 2,
+                EnemyId = 1
+            },
+            new EpisodeEnemy
+            {
+                EpisodeEnemyId = 4,
+                EpisodeId = 3,
+                EnemyId = 1
+            },
+            new EpisodeEnemy
+            {
+                EpisodeEnemyId = 5,
+                EpisodeId = 4,
+                EnemyId = 3
+            }
+        );
 
-
+        modelBuilder.Entity<EpisodeCompanion>().HasData(
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 1,
+                EpisodeId = 1,
+                CompanionId = 1
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 2,
+                EpisodeId = 1,
+                CompanionId = 3
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 3,
+                EpisodeId = 2,
+                CompanionId = 4
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 4,
+                EpisodeId = 3,
+                CompanionId = 1
+            },
+            new EpisodeCompanion
+            {
+                EpisodeCompanionId = 5,
+                EpisodeId = 4,
+                CompanionId = 4
+            }
+        );
     }
 
     [DbFunction]
