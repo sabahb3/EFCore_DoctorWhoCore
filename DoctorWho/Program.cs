@@ -15,7 +15,7 @@ internal class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
-        AddEnemyToEpisode(1, "TestTest", "SabahTest");
+        AddCompanionToEpisode(1,"CompanionTest","whoPlayedTest");
     }
 
     public static void ExecuteView()
@@ -56,6 +56,30 @@ internal class Program
                     }
                 );
                 addEnemy.SaveChanges();
+            }
+        }
+    }
+    public static void AddCompanionToEpisode(int episodeId,string companionName, string whoPlayed)
+    {
+        var episode = _context.tblEpisodes.Find(episodeId);
+        if (episode != null)
+        {
+            var companion = new Companion
+            {
+                CompanionName = companionName,
+                WhoPlayed = whoPlayed
+            };
+            using (var addCompanion = new DoctorWhoDbContext())
+            {
+                addCompanion.Attach(episode);
+                episode.EpisodesCompanions.Add
+                (
+                    new EpisodeCompanion
+                    {
+                        Companion = companion
+                    }
+                );
+                addCompanion.SaveChanges();
             }
         }
     }
