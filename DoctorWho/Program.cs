@@ -17,7 +17,9 @@ class Program
         Console.WriteLine(enemies);
         // CreateAuthor("New Author");
         // UpdateAuthor(7, "UpdatedName");
-        DeleteAuthor(7);
+        // DeleteAuthor(7);
+
+        CreateCompanion("CompanionTest", "playedTest");
     }
 
     public static void ExecuteView()
@@ -72,5 +74,16 @@ class Program
                 deleteContext.SaveChanges();
             }   
         }
+    }
+    
+    public static void CreateCompanion(string companionName, string whoPlayed)
+    {
+        var companion = new Companion
+        {
+           CompanionName = companionName,
+           WhoPlayed = whoPlayed,
+        };
+        _context.tblCompanions.Add(companion);
+        _context.SaveChanges();
     }
 }
