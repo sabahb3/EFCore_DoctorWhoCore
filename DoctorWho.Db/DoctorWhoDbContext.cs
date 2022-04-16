@@ -59,6 +59,8 @@ public class DoctorWhoDbContext : DbContext
         modelBuilder.Entity<Episode>().Property(e => e.EpisodeType).HasConversion<string>();
 
         modelBuilder.Entity<ViewEpisodes>().HasNoKey().ToView("viewEpisodes");
+        modelBuilder.Entity<EpisodeEnemy>().Property(e => e.EpisodeEnemyId).UseIdentityColumn();
+        modelBuilder.Entity<EpisodeCompanion>().Property(e => e.EpisodeCompanionId).UseIdentityColumn();
 
         modelBuilder.Entity<Enemy>().HasData(
             new Enemy
@@ -269,7 +271,6 @@ public class DoctorWhoDbContext : DbContext
                 AuthorId = 2
             }
         );
-
         modelBuilder.Entity<EpisodeEnemy>().HasData(
             new EpisodeEnemy
             {
