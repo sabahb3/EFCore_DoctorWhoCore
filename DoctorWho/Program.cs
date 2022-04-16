@@ -16,8 +16,6 @@ internal class Program
         Console.WriteLine();
         var enemies = GetEnemiesEpisode(1);
         Console.WriteLine(enemies);
-        var enemy = GetEnemyById(1);
-        
     }
 
     public static void ExecuteView()
@@ -30,14 +28,14 @@ internal class Program
         var result = DoctorWhoDbContext.fnCompanions(episodeId);
         return result;
     }
-    
+
     public static string GetEnemiesEpisode(int episodeId)
     {
         var result = DoctorWhoDbContext.fnEnemies(episodeId);
         return result;
     }
 
-    public static void AddEnemyToEpisode(int episodeId,string enemyName, string description)
+    public static void AddEnemyToEpisode(int episodeId, string enemyName, string description)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -61,7 +59,8 @@ internal class Program
             }
         }
     }
-    public static void AddCompanionToEpisode(int episodeId,string companionName, string whoPlayed)
+
+    public static void AddCompanionToEpisode(int episodeId, string companionName, string whoPlayed)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -94,5 +93,10 @@ internal class Program
     public static Enemy? GetEnemyById(int enemyId)
     {
         return _context.tblEnemies.Find(enemyId);
+    }
+
+    public static Companion? GetCompanionById(int companionId)
+    {
+        return _context.tblCompanions.Find(companionId);
     }
 }
