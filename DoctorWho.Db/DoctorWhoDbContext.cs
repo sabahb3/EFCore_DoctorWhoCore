@@ -337,20 +337,22 @@ public class DoctorWhoDbContext : DbContext
     }
 
     [DbFunction]
-    public static string fnCompanions(int EpisodeId)
+    public static string? fnCompanions(int EpisodeId)
     {
         var context = new DoctorWhoDbContext();
         var companion = context.Set<EpisodeCompanion>().Where(ec => ec.EpisodeId == EpisodeId)
             .Select(ec => ec.Companion.CompanionName);
-        return string.Join(',', companion);
+        if (!companion.Any()) return null;
+        return string.Join(", ", companion);
     }
 
     [DbFunction]
-    public static string fnEnemies(int EpisodeId)
+    public static string? fnEnemies(int EpisodeId)
     {
         var context = new DoctorWhoDbContext();
-        var companion = context.Set<EpisodeEnemy>().Where(ec => ec.EpisodeId == EpisodeId)
+        var enemy = context.Set<EpisodeEnemy>().Where(ec => ec.EpisodeId == EpisodeId)
             .Select(ec => ec.Enemy.EnemyName);
-        return string.Join(',', companion);
+        if (!enemy.Any()) return null;
+        return string.Join(", ", enemy);
     }
 }
