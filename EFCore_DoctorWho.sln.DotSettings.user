@@ -2,5 +2,7 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=89100edf_002Df0da_002D4500_002D8d24_002D9b267f48c6bf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="tblEnemiesShouldHaveFiveRecodes" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.SeedingData&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.UserDefinedTypes.ShouldReturnAllCompanionsOfEpisode&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.UserDefinedTypes&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
