@@ -216,5 +216,15 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
+    public static void DeleteEpisode(int episodeId)
+    {
+        var episode = _context.tblEpisodes.Find(episodeId);
+        if (episode != null)
+            using (var deleteContext = new DoctorWhoDbContext())
+            {
+                deleteContext.tblEpisodes.Remove(episode);
+                deleteContext.SaveChanges();
+            }
+    }
     
 }
