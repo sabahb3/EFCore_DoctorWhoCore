@@ -1,22 +1,27 @@
-using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
 
-namespace DoctorWho;
+namespace DoctorWho.Db.Repositories;
 
-public class DoctorCUD
+public class DoctorRepository
 {
-    private static DoctorWhoDbContext _context = new();
+    private DoctorWhoDbContext _context;
 
-    public static void CreateDoctor(Doctor doctor)
+    public DoctorRepository(DoctorWhoDbContext context)
+    {
+        _context = context;
+    }
+
+    public void CreateDoctor(Doctor doctor)
     {
         _context.tblDoctors.Add(doctor);
         _context.SaveChanges();
     }
-    public static void UpdateDoctorNumber(int doctorId, string doctorNumber)
+
+    public void UpdateDoctorNumber(int doctorId, string doctorNumber)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.DoctorNumber = doctorNumber;
                 updateContext.Entry(doctor).State = EntityState.Modified;
@@ -24,11 +29,11 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctorName(int doctorId, string doctorName)
+    public void UpdateDoctorName(int doctorId, string doctorName)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.DoctorName = doctorName;
                 updateContext.Entry(doctor).State = EntityState.Modified;
@@ -36,11 +41,11 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctorBirthDate(int doctorId, DateTime birthDate)
+    public void UpdateDoctorBirthDate(int doctorId, DateTime birthDate)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.BirthDate = birthDate;
                 updateContext.Entry(doctor).State = EntityState.Modified;
@@ -48,11 +53,11 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctorFirstEpisode(int doctorId, DateTime firstEpisode)
+    public void UpdateDoctorFirstEpisode(int doctorId, DateTime firstEpisode)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.FirstEpisodeDate = firstEpisode;
                 updateContext.Entry(doctor).State = EntityState.Modified;
@@ -60,11 +65,11 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctorLastEpisode(int doctorId, DateTime lastEpisode)
+    public void UpdateDoctorLastEpisode(int doctorId, DateTime lastEpisode)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.LastEpisodeDate = lastEpisode;
                 updateContext.Entry(doctor).State = EntityState.Modified;
@@ -72,11 +77,11 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctor(int doctorId, string doctorNumber, string doctorName)
+    public void UpdateDoctor(int doctorId, string doctorNumber, string doctorName)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.DoctorNumber = doctorNumber;
                 doctor.DoctorName = doctorName;
@@ -85,11 +90,11 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctor(int doctorId, string doctorNumber, string doctorName, DateTime birthDate)
+    public void UpdateDoctor(int doctorId, string doctorNumber, string doctorName, DateTime birthDate)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.DoctorNumber = doctorNumber;
                 doctor.DoctorName = doctorName;
@@ -99,12 +104,12 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctor(int doctorId, string doctorNumber, string doctorName, DateTime birthDate,
+    public void UpdateDoctor(int doctorId, string doctorNumber, string doctorName, DateTime birthDate,
         DateTime firstEpisode)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.DoctorNumber = doctorNumber;
                 doctor.DoctorName = doctorName;
@@ -115,12 +120,12 @@ public class DoctorCUD
             }
     }
 
-    public static void UpdateDoctor(int doctorId, string doctorNumber, string doctorName, DateTime birthDate,
+    public void UpdateDoctor(int doctorId, string doctorNumber, string doctorName, DateTime birthDate,
         DateTime firstEpisode, DateTime lastEpisode)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 doctor.DoctorNumber = doctorNumber;
                 doctor.DoctorName = doctorName;
@@ -132,11 +137,11 @@ public class DoctorCUD
             }
     }
 
-    public static void DeleteDoctor(int doctorId)
+    public  void DeleteDoctor(int doctorId)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
-            using (var deleteContext = new DoctorWhoDbContext())
+            using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblDoctors.Remove(doctor);
                 deleteContext.SaveChanges();
