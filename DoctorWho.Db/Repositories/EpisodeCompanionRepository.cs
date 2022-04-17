@@ -10,6 +10,7 @@ public class EpisodeCompanionRepository
     {
         _context = context;
     }
+
     public void AddCompanionToEpisode(int episodeId, string companionName, string whoPlayed)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
@@ -35,4 +36,9 @@ public class EpisodeCompanionRepository
         }
     }
 
+    public static string GetCompanionsEpisode(int episodeId)
+    {
+        var result = DoctorWhoDbContext.fnCompanions(episodeId);
+        return result;
+    }
 }

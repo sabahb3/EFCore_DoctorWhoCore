@@ -12,9 +12,6 @@ internal class Program
     {
         ExecuteView();
         Console.WriteLine();
-        var companions = GetCompanionsEpisode(1);
-        Console.WriteLine(companions);
-        Console.WriteLine();
         var result = await ExecuteProcedure();
     }
 
@@ -46,12 +43,4 @@ internal class Program
     {
         var episodesView = _context.ViewEpisodes.ToList();
     }
-
-    public static string GetCompanionsEpisode(int episodeId)
-    {
-        var result = DoctorWhoDbContext.fnCompanions(episodeId);
-        return result;
-    }
-
-
 }
