@@ -1,12 +1,16 @@
-using DoctorWho.Db;
+namespace DoctorWho.Db.Repositories;
 using DoctorWho.Db.Enumerations;
 using Microsoft.EntityFrameworkCore;
-namespace DoctorWho;
 
-public class EpisodeCUD
+public class EpisodeRepository
 {
-    private static DoctorWhoDbContext _context = new();
-    public static void CreateEpisode(Episode episode)
+    private DoctorWhoDbContext _context;
+
+    public EpisodeRepository(DoctorWhoDbContext context)
+    {
+        _context = context;
+    }
+       public  void CreateEpisode(Episode episode)
     {
         var author = _context.tblAuthors.Find(episode.AuthorId);
         var doctor = _context.tblDoctors.Find(episode.DoctorId);
@@ -16,66 +20,66 @@ public class EpisodeCUD
             _context.SaveChanges();            
         }
     }
-    public static void UpdateSeriesNumber(int episodeId, int seriesNumber)
+    public  void UpdateSeriesNumber(int episodeId, int seriesNumber)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisodeNumber(int episodeId, int episodeNumber)
+    public  void UpdateEpisodeNumber(int episodeId, int episodeNumber)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.EpisodeNumber = episodeNumber;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisodeType(int episodeId, EpisodeType episodeType)
+    public  void UpdateEpisodeType(int episodeId, EpisodeType episodeType)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.EpisodeType = episodeType;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateTitle(int episodeId, string title)
+    public  void UpdateTitle(int episodeId, string title)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.Title = title;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisodeDate(int episodeId, DateTime episodeDate)
+    public  void UpdateEpisodeDate(int episodeId, DateTime episodeDate)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.EpisodeDate = episodeDate;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateNote(int episodeId, string note)
+    public  void UpdateNote(int episodeId, string note)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.Note = note;
                 updateContext.Entry(episode).State = EntityState.Modified;
@@ -83,35 +87,35 @@ public class EpisodeCUD
             }
     }
     
-    public static void UpdateAuthor(int episodeId, int authorId)
+    public  void UpdateAuthor(int episodeId, int authorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var author = _context.tblAuthors.Find(authorId);
         if (episode != null&& author != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.AuthorId = authorId;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateDoctor(int episodeId, int doctorId)
+    public  void UpdateDoctor(int episodeId, int doctorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var doctor = _context.tblDoctors.Find(doctorId);
         if (episode != null&& doctor != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.DoctorId = doctorId;
                 updateContext.Entry(episode).State = EntityState.Modified;
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -120,11 +124,11 @@ public class EpisodeCUD
             }
     }
     
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -133,11 +137,11 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -147,11 +151,11 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -162,11 +166,11 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string note)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string note)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -178,12 +182,12 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string? note,int authorId)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string? note,int authorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var author = _context.tblAuthors.Find(authorId);
         if (episode != null&& author!=null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -196,13 +200,13 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
-    public static void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string? note,int authorId, int doctorId)
+    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string? note,int authorId, int doctorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var author = _context.tblAuthors.Find(authorId);
         var doctor = _context.tblDoctors.Find(doctorId);
         if (episode != null&& author!=null&&doctor!=null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
@@ -216,15 +220,14 @@ public class EpisodeCUD
                 updateContext.SaveChanges();
             }
     }
-    public static void DeleteEpisode(int episodeId)
+    public  void DeleteEpisode(int episodeId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
-            using (var deleteContext = new DoctorWhoDbContext())
+            using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblEpisodes.Remove(episode);
                 deleteContext.SaveChanges();
             }
     }
-    
 }
