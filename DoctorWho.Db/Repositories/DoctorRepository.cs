@@ -137,7 +137,7 @@ public class DoctorRepository
             }
     }
 
-    public  void DeleteDoctor(int doctorId)
+    public void DeleteDoctor(int doctorId)
     {
         var doctor = _context.tblDoctors.Find(doctorId);
         if (doctor != null)
@@ -146,5 +146,10 @@ public class DoctorRepository
                 deleteContext.tblDoctors.Remove(doctor);
                 deleteContext.SaveChanges();
             }
+    }
+
+    public void GetAllDoctor()
+    {
+        var doctors = _context.tblDoctors.ToList();
     }
 }

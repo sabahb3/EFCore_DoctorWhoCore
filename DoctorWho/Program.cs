@@ -62,11 +62,6 @@ internal class Program
         return result;
     }
 
-    public static void GetAllDoctor()
-    {
-        var doctors = _context.tblDoctors.ToList();
-    }
-
     public static Enemy? GetEnemyById(int enemyId)
     {
         return _context.tblEnemies.Find(enemyId);
