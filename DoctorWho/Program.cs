@@ -61,12 +61,7 @@ internal class Program
         var result = DoctorWhoDbContext.fnEnemies(episodeId);
         return result;
     }
-
-    public static Enemy? GetEnemyById(int enemyId)
-    {
-        return _context.tblEnemies.Find(enemyId);
-    }
-
+    
     public static Companion? GetCompanionById(int companionId)
     {
         return _context.tblCompanions.Find(companionId);

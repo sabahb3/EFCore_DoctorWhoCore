@@ -10,7 +10,8 @@ public class EnemyRepository
     {
         _context = context;
     }
-    public  void CreateEnemy(string enemyName, string description)
+
+    public void CreateEnemy(string enemyName, string description)
     {
         var enemy = new Enemy
         {
@@ -21,7 +22,7 @@ public class EnemyRepository
         _context.SaveChanges();
     }
 
-    public  void UpdateEnemyName(int enemyId, string enemyName)
+    public void UpdateEnemyName(int enemyId, string enemyName)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
@@ -33,7 +34,7 @@ public class EnemyRepository
             }
     }
 
-    public  void UpdateEnemyDescription(int enemyId, string description)
+    public void UpdateEnemyDescription(int enemyId, string description)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
@@ -45,7 +46,7 @@ public class EnemyRepository
             }
     }
 
-    public  void UpdateEnemy(int enemyId, string enemyName, string description)
+    public void UpdateEnemy(int enemyId, string enemyName, string description)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
@@ -67,5 +68,10 @@ public class EnemyRepository
                 deleteContext.tblEnemies.Remove(enemy);
                 deleteContext.SaveChanges();
             }
+    }
+
+    public Enemy? GetEnemyById(int enemyId)
+    {
+        return _context.tblEnemies.Find(enemyId);
     }
 }
