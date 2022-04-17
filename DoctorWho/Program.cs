@@ -10,8 +10,6 @@ internal class Program
 
     public static async Task Main()
     {
-        ExecuteView();
-        Console.WriteLine();
         var result = await ExecuteProcedure();
     }
 
@@ -37,10 +35,5 @@ internal class Program
 
             return (companions, enemies);
         }
-    }
-
-    public static void ExecuteView()
-    {
-        var episodesView = _context.ViewEpisodes.ToList();
     }
 }
