@@ -3,7 +3,6 @@
 using Dapper;
 using DoctorWho.Db;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
@@ -60,10 +59,5 @@ internal class Program
     {
         var result = DoctorWhoDbContext.fnEnemies(episodeId);
         return result;
-    }
-    
-    public static Companion? GetCompanionById(int companionId)
-    {
-        return _context.tblCompanions.Find(companionId);
     }
 }

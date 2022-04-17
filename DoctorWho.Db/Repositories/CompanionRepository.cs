@@ -69,4 +69,9 @@ public class CompanionRepository
                 deleteContext.SaveChanges();
             }
     }
+
+    public Companion? GetCompanionById(int companionId)
+    {
+        return _context.tblCompanions.Find(companionId);
+    }
 }
