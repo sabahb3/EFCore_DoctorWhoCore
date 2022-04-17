@@ -1,13 +1,16 @@
-using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
 
-namespace DoctorWho;
+namespace DoctorWho.Db.Repositories;
 
-public class EnemyCUD
+public class EnemyRepository
 {
-    private static DoctorWhoDbContext _context = new();
+    private DoctorWhoDbContext _context;
 
-    public static void CreateEnemy(string enemyName, string description)
+    public EnemyRepository(DoctorWhoDbContext context)
+    {
+        _context = context;
+    }
+    public  void CreateEnemy(string enemyName, string description)
     {
         var enemy = new Enemy
         {
@@ -18,11 +21,11 @@ public class EnemyCUD
         _context.SaveChanges();
     }
 
-    public static void UpdateEnemyName(int enemyId, string enemyName)
+    public  void UpdateEnemyName(int enemyId, string enemyName)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 enemy.EnemyName = enemyName;
                 updateContext.Entry(enemy).State = EntityState.Modified;
@@ -30,11 +33,11 @@ public class EnemyCUD
             }
     }
 
-    public static void UpdateEnemyDescription(int enemyId, string description)
+    public  void UpdateEnemyDescription(int enemyId, string description)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 enemy.Description = description;
                 updateContext.Entry(enemy).State = EntityState.Modified;
@@ -42,11 +45,11 @@ public class EnemyCUD
             }
     }
 
-    public static void UpdateEnemy(int enemyId, string enemyName, string description)
+    public  void UpdateEnemy(int enemyId, string enemyName, string description)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 enemy.EnemyName = enemyName;
                 enemy.Description = description;
@@ -55,11 +58,11 @@ public class EnemyCUD
             }
     }
 
-    public static void DeleteEnemy(int enemyId)
+    public void DeleteEnemy(int enemyId)
     {
         var enemy = _context.tblEnemies.Find(enemyId);
         if (enemy != null)
-            using (var deleteContext = new DoctorWhoDbContext())
+            using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblEnemies.Remove(enemy);
                 deleteContext.SaveChanges();
