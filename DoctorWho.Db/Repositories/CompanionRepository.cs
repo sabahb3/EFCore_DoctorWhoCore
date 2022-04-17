@@ -1,13 +1,17 @@
-using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
 
-namespace DoctorWho;
+namespace DoctorWho.Db.Repositories;
 
-public class CompanionCUD
+public class CompanionRepository
 {
-    private static DoctorWhoDbContext _context = new();
+    private DoctorWhoDbContext _context;
 
-    public static void CreateCompanion(string companionName, string whoPlayed)
+    public CompanionRepository(DoctorWhoDbContext context)
+    {
+        _context = context;
+    }
+
+    public void CreateCompanion(string companionName, string whoPlayed)
     {
         var companion = new Companion
         {
@@ -18,11 +22,11 @@ public class CompanionCUD
         _context.SaveChanges();
     }
 
-    public static void UpdateCompanionName(int companionId, string companionName)
+    public void UpdateCompanionName(int companionId, string companionName)
     {
         var companion = _context.tblCompanions.Find(companionId);
         if (companion != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 companion.CompanionName = companionName;
                 updateContext.Entry(companion).State = EntityState.Modified;
@@ -30,11 +34,11 @@ public class CompanionCUD
             }
     }
 
-    public static void UpdateCompanionWhoPlayed(int companionId, string whoPlayed)
+    public void UpdateCompanionWhoPlayed(int companionId, string whoPlayed)
     {
         var companion = _context.tblCompanions.Find(companionId);
         if (companion != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 companion.WhoPlayed = whoPlayed;
                 updateContext.Entry(companion).State = EntityState.Modified;
@@ -42,11 +46,11 @@ public class CompanionCUD
             }
     }
 
-    public static void UpdateCompanion(int companionId, string companionName, string whoPlayed)
+    public void UpdateCompanion(int companionId, string companionName, string whoPlayed)
     {
         var companion = _context.tblCompanions.Find(companionId);
         if (companion != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 companion.CompanionName = companionName;
                 companion.WhoPlayed = whoPlayed;
@@ -55,11 +59,11 @@ public class CompanionCUD
             }
     }
 
-    public static void DeleteCompanion(int companionId)
+    public void DeleteCompanion(int companionId)
     {
         var companion = _context.tblCompanions.Find(companionId);
         if (companion != null)
-            using (var deleteContext = new DoctorWhoDbContext())
+            using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblCompanions.Remove(companion);
                 deleteContext.SaveChanges();
