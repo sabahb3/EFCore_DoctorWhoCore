@@ -1,13 +1,17 @@
-using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
 
-namespace DoctorWho;
+namespace DoctorWho.Db.Repositories;
 
-public class AuthorCUD
+public class AuthorRepository
 {
-    private static DoctorWhoDbContext _context = new();
+    private DoctorWhoDbContext _context;
 
-    public static void CreateAuthor(string authorName)
+    public AuthorRepository(DoctorWhoDbContext context)
+    {
+        _context = context;
+    }
+    
+    public void CreateAuthor(string authorName)
     {
         var author = new Author
         {
@@ -17,11 +21,11 @@ public class AuthorCUD
         _context.SaveChanges();
     }
 
-    public static void UpdateAuthor(int authorId, string authorName)
+    public void UpdateAuthor(int authorId, string authorName)
     {
         var author = _context.tblAuthors.Find(authorId);
         if (author != null)
-            using (var updateContext = new DoctorWhoDbContext())
+            using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 author.AuthorName = authorName;
                 updateContext.Entry(author).State = EntityState.Modified;
@@ -29,11 +33,11 @@ public class AuthorCUD
             }
     }
 
-    public static void DeleteAuthor(int authorId)
+    public void DeleteAuthor(int authorId)
     {
         var author = _context.tblAuthors.Find(authorId);
         if (author != null)
-            using (var deleteContext = new DoctorWhoDbContext())
+            using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblAuthors.Remove(author);
                 deleteContext.SaveChanges();
