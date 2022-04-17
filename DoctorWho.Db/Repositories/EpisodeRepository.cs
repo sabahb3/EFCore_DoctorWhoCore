@@ -1,5 +1,6 @@
 namespace DoctorWho.Db.Repositories;
-using DoctorWho.Db.Enumerations;
+
+using Enumerations;
 using Microsoft.EntityFrameworkCore;
 
 public class EpisodeRepository
@@ -10,17 +11,19 @@ public class EpisodeRepository
     {
         _context = context;
     }
-       public  void CreateEpisode(Episode episode)
+
+    public void CreateEpisode(Episode episode)
     {
         var author = _context.tblAuthors.Find(episode.AuthorId);
         var doctor = _context.tblDoctors.Find(episode.DoctorId);
-        if(author!=null&& doctor != null)
+        if (author != null && doctor != null)
         {
             _context.tblEpisodes.Add(episode);
-            _context.SaveChanges();            
+            _context.SaveChanges();
         }
     }
-    public  void UpdateSeriesNumber(int episodeId, int seriesNumber)
+
+    public void UpdateSeriesNumber(int episodeId, int seriesNumber)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -31,7 +34,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisodeNumber(int episodeId, int episodeNumber)
+
+    public void UpdateEpisodeNumber(int episodeId, int episodeNumber)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -42,7 +46,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisodeType(int episodeId, EpisodeType episodeType)
+
+    public void UpdateEpisodeType(int episodeId, EpisodeType episodeType)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -53,7 +58,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateTitle(int episodeId, string title)
+
+    public void UpdateTitle(int episodeId, string title)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -64,7 +70,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisodeDate(int episodeId, DateTime episodeDate)
+
+    public void UpdateEpisodeDate(int episodeId, DateTime episodeDate)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -75,7 +82,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateNote(int episodeId, string note)
+
+    public void UpdateNote(int episodeId, string note)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -86,12 +94,12 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    
-    public  void UpdateAuthor(int episodeId, int authorId)
+
+    public void UpdateAuthor(int episodeId, int authorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var author = _context.tblAuthors.Find(authorId);
-        if (episode != null&& author != null)
+        if (episode != null && author != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.AuthorId = authorId;
@@ -99,11 +107,12 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateDoctor(int episodeId, int doctorId)
+
+    public void UpdateDoctor(int episodeId, int doctorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var doctor = _context.tblDoctors.Find(doctorId);
-        if (episode != null&& doctor != null)
+        if (episode != null && doctor != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.DoctorId = doctorId;
@@ -111,7 +120,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -123,8 +133,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -137,7 +147,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -151,7 +162,9 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+        DateTime date)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -166,7 +179,9 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string note)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+        DateTime date, string note)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
@@ -182,11 +197,13 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string? note,int authorId)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+        DateTime date, string? note, int authorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var author = _context.tblAuthors.Find(authorId);
-        if (episode != null&& author!=null)
+        if (episode != null && author != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
@@ -200,12 +217,14 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,DateTime date,string? note,int authorId, int doctorId)
+
+    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+        DateTime date, string? note, int authorId, int doctorId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         var author = _context.tblAuthors.Find(authorId);
         var doctor = _context.tblDoctors.Find(doctorId);
-        if (episode != null&& author!=null&&doctor!=null)
+        if (episode != null && author != null && doctor != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
@@ -220,7 +239,8 @@ public class EpisodeRepository
                 updateContext.SaveChanges();
             }
     }
-    public  void DeleteEpisode(int episodeId)
+
+    public void DeleteEpisode(int episodeId)
     {
         var episode = _context.tblEpisodes.Find(episodeId);
         if (episode != null)
