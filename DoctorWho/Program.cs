@@ -15,8 +15,6 @@ internal class Program
         var companions = GetCompanionsEpisode(1);
         Console.WriteLine(companions);
         Console.WriteLine();
-        var enemies = GetEnemiesEpisode(1);
-        Console.WriteLine(enemies);
         var result = await ExecuteProcedure();
     }
 
@@ -55,9 +53,5 @@ internal class Program
         return result;
     }
 
-    public static string GetEnemiesEpisode(int episodeId)
-    {
-        var result = DoctorWhoDbContext.fnEnemies(episodeId);
-        return result;
-    }
+
 }

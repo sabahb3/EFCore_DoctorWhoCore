@@ -35,4 +35,9 @@ public class EpisodeEnemyRepository
             }
         }
     }
+    public static string GetEnemiesEpisode(int episodeId)
+    {
+        var result = DoctorWhoDbContext.fnEnemies(episodeId);
+        return result;
+    }
 }
