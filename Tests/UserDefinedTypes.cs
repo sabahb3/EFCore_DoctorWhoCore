@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using DoctorWho.Db;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +19,7 @@ public class UserDefinedTypes
     public void ShouldReturnAllCompanionsOfEpisode(int episodeId, string? companions)
     {
         _optionsBuilder.UseInMemoryDatabase("UsingCompanionsFunction");
-        using (var context = new DoctorWhoDbContext())
+        using (var context = new DoctorWhoDbContext(_optionsBuilder.Options))
         {
             context.Database.EnsureCreated();
             var actualCompanions = DoctorWhoDbContext.fnCompanions(episodeId);
@@ -37,7 +36,7 @@ public class UserDefinedTypes
     public void ShouldReturnAllEnemiesOfEpisode(int episodeId, string? companions)
     {
         _optionsBuilder.UseInMemoryDatabase("UsingEnemiesFunction");
-        using (var context = new DoctorWhoDbContext())
+        using (var context = new DoctorWhoDbContext(_optionsBuilder.Options))
         {
             context.Database.EnsureCreated();
             var actualCompanions = DoctorWhoDbContext.fnEnemies(episodeId);
@@ -48,7 +47,6 @@ public class UserDefinedTypes
     [Fact]
     public void ShouldReturnViewResult()
     {
-        _optionsBuilder.UseInMemoryDatabase("UsingView");
         using (var context = new DoctorWhoDbContext())
         {
             context.Database.EnsureCreated();
