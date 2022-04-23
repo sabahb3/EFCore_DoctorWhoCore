@@ -12,131 +12,131 @@ public class EpisodeRepository
         _context = context;
     }
 
-    public void CreateEpisode(Episode episode)
+    public async Task CreateEpisode(Episode episode)
     {
-        var author = _context.tblAuthors.Find(episode.AuthorId);
-        var doctor = _context.tblDoctors.Find(episode.DoctorId);
+        var author = await _context.tblAuthors.FindAsync(episode.AuthorId);
+        var doctor = await _context.tblDoctors.FindAsync(episode.DoctorId);
         if (author != null && doctor != null)
         {
             _context.tblEpisodes.Add(episode);
-            _context.SaveChanges();
+            await  _context.SaveChangesAsync();
         }
     }
 
-    public void UpdateSeriesNumber(int episodeId, int seriesNumber)
+    public async Task UpdateSeriesNumber(int episodeId, int seriesNumber)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisodeNumber(int episodeId, int episodeNumber)
+    public async Task UpdateEpisodeNumber(int episodeId, int episodeNumber)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.EpisodeNumber = episodeNumber;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisodeType(int episodeId, EpisodeType episodeType)
+    public async Task UpdateEpisodeType(int episodeId, EpisodeType episodeType)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.EpisodeType = episodeType;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateTitle(int episodeId, string title)
+    public async Task UpdateTitle(int episodeId, string title)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.Title = title;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisodeDate(int episodeId, DateTime episodeDate)
+    public async Task UpdateEpisodeDate(int episodeId, DateTime episodeDate)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.EpisodeDate = episodeDate;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateNote(int episodeId, string note)
+    public async Task UpdateNote(int episodeId, string note)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.Note = note;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateAuthor(int episodeId, int authorId)
+    public async Task UpdateAuthor(int episodeId, int authorId)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
-        var author = _context.tblAuthors.Find(authorId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
+        var author = await _context.tblAuthors.FindAsync(authorId);
         if (episode != null && author != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.AuthorId = authorId;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateDoctor(int episodeId, int doctorId)
+    public async Task UpdateDoctor(int episodeId, int doctorId)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
-        var doctor = _context.tblDoctors.Find(doctorId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
+        var doctor = await _context.tblDoctors.FindAsync(doctorId);
         if (episode != null && doctor != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.DoctorId = doctorId;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber)
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 episode.SeriesNumber = seriesNumber;
                 episode.EpisodeNumber = episodeNumber;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type)
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
@@ -144,13 +144,13 @@ public class EpisodeRepository
                 episode.EpisodeNumber = episodeNumber;
                 episode.EpisodeType = type;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title)
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
@@ -159,14 +159,14 @@ public class EpisodeRepository
                 episode.EpisodeType = type;
                 episode.Title = title;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
         DateTime date)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
@@ -176,14 +176,14 @@ public class EpisodeRepository
                 episode.Title = title;
                 episode.EpisodeDate = date;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
         DateTime date, string note)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
@@ -194,15 +194,15 @@ public class EpisodeRepository
                 episode.EpisodeDate = date;
                 episode.Note = note;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
         DateTime date, string? note, int authorId)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
-        var author = _context.tblAuthors.Find(authorId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
+        var author = await _context.tblAuthors.FindAsync(authorId);
         if (episode != null && author != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
@@ -214,16 +214,16 @@ public class EpisodeRepository
                 episode.Note = note;
                 episode.AuthorId = authorId;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
+    public async Task UpdateEpisode(int episodeId, int seriesNumber, int episodeNumber, EpisodeType type, string title,
         DateTime date, string? note, int authorId, int doctorId)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
-        var author = _context.tblAuthors.Find(authorId);
-        var doctor = _context.tblDoctors.Find(doctorId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
+        var author = await _context.tblAuthors.FindAsync(authorId);
+        var doctor = await _context.tblDoctors.FindAsync(doctorId);
         if (episode != null && author != null && doctor != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
@@ -236,18 +236,18 @@ public class EpisodeRepository
                 episode.AuthorId = authorId;
                 episode.DoctorId = doctorId;
                 updateContext.Entry(episode).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void DeleteEpisode(int episodeId)
+    public async Task DeleteEpisode(int episodeId)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
             using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblEpisodes.Remove(episode);
-                deleteContext.SaveChanges();
+                await deleteContext.SaveChangesAsync();
             }
     }
 }

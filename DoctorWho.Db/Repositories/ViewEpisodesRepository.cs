@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace DoctorWho.Db.Repositories;
 
 public class ViewEpisodesRepository
@@ -9,8 +11,9 @@ public class ViewEpisodesRepository
         _context = context;
     }
 
-    public void ExecuteView()
+    public async Task<IEnumerable<ViewEpisodes>> ExecuteView()
     {
-        var episodesView = _context.ViewEpisodes.ToList();
+        var episodesView = await _context.ViewEpisodes.ToListAsync();
+        return episodesView;
     }
 }

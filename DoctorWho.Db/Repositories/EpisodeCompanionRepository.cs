@@ -11,9 +11,9 @@ public class EpisodeCompanionRepository
         _context = context;
     }
 
-    public void AddCompanionToEpisode(int episodeId, string companionName, string whoPlayed)
+    public async Task AddCompanionToEpisode(int episodeId, string companionName, string whoPlayed)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
         {
             var companion = new Companion
@@ -31,12 +31,12 @@ public class EpisodeCompanionRepository
                         Companion = companion
                     }
                 );
-                addCompanion.SaveChanges();
+                await addCompanion.SaveChangesAsync();
             }
         }
     }
 
-    public static string GetCompanionsEpisode(int episodeId)
+    public static string? GetCompanionsEpisode(int episodeId)
     {
         var result = DoctorWhoDbContext.fnCompanions(episodeId);
         return result;

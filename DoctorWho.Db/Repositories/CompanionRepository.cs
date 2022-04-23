@@ -11,7 +11,7 @@ public class CompanionRepository
         _context = context;
     }
 
-    public void CreateCompanion(string companionName, string whoPlayed)
+    public async Task CreateCompanion(string companionName, string whoPlayed)
     {
         var companion = new Companion
         {
@@ -19,59 +19,59 @@ public class CompanionRepository
             WhoPlayed = whoPlayed
         };
         _context.tblCompanions.Add(companion);
-        _context.SaveChanges();
+       await _context.SaveChangesAsync();
     }
 
-    public void UpdateCompanionName(int companionId, string companionName)
+    public async Task UpdateCompanionName(int companionId, string companionName)
     {
-        var companion = _context.tblCompanions.Find(companionId);
+        var companion = await _context.tblCompanions.FindAsync(companionId);
         if (companion != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 companion.CompanionName = companionName;
                 updateContext.Entry(companion).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateCompanionWhoPlayed(int companionId, string whoPlayed)
+    public async Task UpdateCompanionWhoPlayed(int companionId, string whoPlayed)
     {
-        var companion = _context.tblCompanions.Find(companionId);
+        var companion =await _context.tblCompanions.FindAsync(companionId);
         if (companion != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 companion.WhoPlayed = whoPlayed;
                 updateContext.Entry(companion).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateCompanion(int companionId, string companionName, string whoPlayed)
+    public async Task UpdateCompanion(int companionId, string companionName, string whoPlayed)
     {
-        var companion = _context.tblCompanions.Find(companionId);
+        var companion =await _context.tblCompanions.FindAsync(companionId);
         if (companion != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 companion.CompanionName = companionName;
                 companion.WhoPlayed = whoPlayed;
                 updateContext.Entry(companion).State = EntityState.Modified;
-                updateContext.SaveChanges();
+               await updateContext.SaveChangesAsync();
             }
     }
 
-    public void DeleteCompanion(int companionId)
+    public async Task DeleteCompanion(int companionId)
     {
-        var companion = _context.tblCompanions.Find(companionId);
+        var companion = await _context.tblCompanions.FindAsync(companionId);
         if (companion != null)
             using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblCompanions.Remove(companion);
-                deleteContext.SaveChanges();
+               await deleteContext.SaveChangesAsync();
             }
     }
 
-    public Companion? GetCompanionById(int companionId)
+    public async Task<Companion?> GetCompanionById(int companionId)
     {
-        return _context.tblCompanions.Find(companionId);
+        return await _context.tblCompanions.FindAsync(companionId);
     }
 }

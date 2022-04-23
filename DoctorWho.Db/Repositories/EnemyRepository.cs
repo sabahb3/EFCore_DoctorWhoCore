@@ -11,7 +11,7 @@ public class EnemyRepository
         _context = context;
     }
 
-    public void CreateEnemy(string enemyName, string description)
+    public async Task CreateEnemy(string enemyName, string description)
     {
         var enemy = new Enemy
         {
@@ -19,59 +19,59 @@ public class EnemyRepository
             Description = description
         };
         _context.tblEnemies.Add(enemy);
-        _context.SaveChanges();
+       await _context.SaveChangesAsync();
     }
 
-    public void UpdateEnemyName(int enemyId, string enemyName)
+    public async Task UpdateEnemyName(int enemyId, string enemyName)
     {
-        var enemy = _context.tblEnemies.Find(enemyId);
+        var enemy = await _context.tblEnemies.FindAsync(enemyId);
         if (enemy != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 enemy.EnemyName = enemyName;
                 updateContext.Entry(enemy).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEnemyDescription(int enemyId, string description)
+    public async Task UpdateEnemyDescription(int enemyId, string description)
     {
-        var enemy = _context.tblEnemies.Find(enemyId);
+        var enemy = await _context.tblEnemies.FindAsync(enemyId);
         if (enemy != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 enemy.Description = description;
                 updateContext.Entry(enemy).State = EntityState.Modified;
-                updateContext.SaveChanges();
+                await updateContext.SaveChangesAsync();
             }
     }
 
-    public void UpdateEnemy(int enemyId, string enemyName, string description)
+    public async Task UpdateEnemy(int enemyId, string enemyName, string description)
     {
-        var enemy = _context.tblEnemies.Find(enemyId);
+        var enemy = await _context.tblEnemies.FindAsync(enemyId);
         if (enemy != null)
             using (var updateContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 enemy.EnemyName = enemyName;
                 enemy.Description = description;
                 updateContext.Entry(enemy).State = EntityState.Modified;
-                updateContext.SaveChanges();
+               await updateContext.SaveChangesAsync();
             }
     }
 
-    public void DeleteEnemy(int enemyId)
+    public async Task DeleteEnemy(int enemyId)
     {
-        var enemy = _context.tblEnemies.Find(enemyId);
+        var enemy = await _context.tblEnemies.FindAsync(enemyId);
         if (enemy != null)
             using (var deleteContext = new DoctorWhoDbContext(_context.DoctorWhoOptions.Options))
             {
                 deleteContext.tblEnemies.Remove(enemy);
-                deleteContext.SaveChanges();
+                await deleteContext.SaveChangesAsync();
             }
     }
 
-    public Enemy? GetEnemyById(int enemyId)
+    public async Task<Enemy?> GetEnemyById(int enemyId)
     {
-        return _context.tblEnemies.Find(enemyId);
+        return await _context.tblEnemies.FindAsync(enemyId);
     }
 }

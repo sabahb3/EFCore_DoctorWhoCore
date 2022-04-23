@@ -11,9 +11,9 @@ public class EpisodeEnemyRepository
         _context = context;
     }
 
-    public void AddEnemyToEpisode(int episodeId, string enemyName, string description)
+    public async Task AddEnemyToEpisode(int episodeId, string enemyName, string description)
     {
-        var episode = _context.tblEpisodes.Find(episodeId);
+        var episode = await _context.tblEpisodes.FindAsync(episodeId);
         if (episode != null)
         {
             var enemy = new Enemy
@@ -31,7 +31,7 @@ public class EpisodeEnemyRepository
                         Enemy = enemy
                     }
                 );
-                addEnemy.SaveChanges();
+                await addEnemy.SaveChangesAsync();
             }
         }
     }
