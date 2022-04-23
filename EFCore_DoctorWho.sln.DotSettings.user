@@ -12,6 +12,7 @@
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.authorRepo.ShouldAddNewAuthor&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.authorRepo.ShouldUpdateAuthor&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.authorRepo.ShouldDeleteAuthor&lt;/TestId&gt;
+<<<<<<< HEAD
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.AuthorRepo&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.CompanionRepo.ShouldAddNewCompanion&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.CompanionRepo.ShouldUpdateCompanion&lt;/TestId&gt;
@@ -19,5 +20,7 @@
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.ViewEpisodesRepo.ShouldExecuteView&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.ViewEpisodesRepo&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.ProcedureRepo.ShouldExecuteProcedure&lt;/TestId&gt;
+=======
+>>>>>>> ac9043d98601caf07e31cfefe9ff0d0120acefdb
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
