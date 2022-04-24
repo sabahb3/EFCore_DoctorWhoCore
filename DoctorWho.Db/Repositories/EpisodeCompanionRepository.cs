@@ -36,7 +36,7 @@ public class EpisodeCompanionRepository
         }
     }
 
-    public static string? GetCompanionsEpisode(int episodeId)
+    public string? GetCompanionsEpisode(int episodeId)
     {
         var result = DoctorWhoDbContext.fnCompanions(episodeId);
         return result;
