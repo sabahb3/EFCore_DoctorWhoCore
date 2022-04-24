@@ -12,15 +12,7 @@
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.authorRepo.ShouldAddNewAuthor&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.authorRepo.ShouldUpdateAuthor&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.authorRepo.ShouldDeleteAuthor&lt;/TestId&gt;
-<<<<<<< HEAD
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.AuthorRepo&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.CompanionRepo.ShouldAddNewCompanion&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.CompanionRepo.ShouldUpdateCompanion&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.CompanionRepo&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.ViewEpisodesRepo.ShouldExecuteView&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.ViewEpisodesRepo&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::157600C2-80F7-4A44-B8BE-D12642D908AA::net6.0::Tests.Repositories.ProcedureRepo.ShouldExecuteProcedure&lt;/TestId&gt;
-=======
->>>>>>> ac9043d98601caf07e31cfefe9ff0d0120acefdb
-  &lt;/TestAncestor&gt;
+</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a5abb1b9_002D196f_002D4dc1_002D9e5b_002D202683fc9be3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/home/hp/Desktop/EFCore_DoctorWho/Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
