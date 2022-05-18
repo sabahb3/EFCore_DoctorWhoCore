@@ -13,6 +13,7 @@ public class DoctorWhoDbContext : DbContext
     public DbSet<Enemy> tblEnemies { get; set; }
     public DbSet<Companion> tblCompanions { get; set; }
     public DbSet<ViewEpisodes> ViewEpisodes { get; set; }
+    public DbContextOptionsBuilder DoctorWhoOptions { get; private set; }
 
     public DoctorWhoDbContext()
     {
@@ -42,6 +43,7 @@ public class DoctorWhoDbContext : DbContext
                     "Persist Security Info=False;User ID=sa;Password=S.11714778")
                 .UseEnumCheckConstraints()
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        DoctorWhoOptions = optionsBuilder;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
